@@ -22,13 +22,13 @@
             <div class="nav-wrapper blue darken-3 dynamic-padding">
                 <ul>
                     <li>
-                        <a ng-click="ctrl.up()">
+                        <a ng-show="ctrl.currentItem.parent" ng-click="ctrl.up()">
                             <i class="flip material-icons left">subdirectory_arrow_left</i>
                             UP
                         </a>
                     </li>
                     <li>
-                        <a id="back-btn">
+                        <a ng-show="ctrl.currentItem.searchResults" id="back-btn">
                             <i class="material-icons left">keyboard_backspace</i>
                             BACK
                         </a>
@@ -53,43 +53,22 @@
 
 
 </header>
+<main id="main" class="dynamic-padding" ng-include="ctrl.currentItem.url" >
 
-<main id="main" class="dynamic-padding" >
-    <button ng-click="ctrl.test()">tester</button>
-    <div class="item-main">
-        <div class="item-view">
-            <div class="item-btnz">
-                <a id="delete-btn" class="waves-effect waves-red btn-flat">
-                    <i class="material-icons red-text">delete</i>
-                </a>
-
-                <a id="edit-btn" class="waves-effect waves-teal btn-flat">
-                    <i class="material-icons teal-text">edit</i>
-                </a>
-            </div>
-            <i class="material-icons large">group</i>
-            <div id="title" contenteditable="true"></div>
-
-
-        </div>
-
-    </div>
-    <ul class="collection">
-
-    </ul>
 </main>
-<div id="group-FAB" class="fixed-action-btn click-to-toggle responsive-fab" >
+
+<div ng-show="ctrl.currentItem.name" id="group-FAB" class="fixed-action-btn click-to-toggle responsive-fab" >
     <a class="btn-floating btn-large red">
         <i class="large mdi-content-add">
         </i>
     </a>
     <ul>
-        <li><a id="add-contact" class="btn-floating green"><i class="material-icons">person_add</i></a></li>
-        <li><a id="add-group" class="btn-floating blue"><i class="material-icons">group_add</i></a></li>
+        <li ng-click="ctrl.addContactForm()" ><a id="add-contact" class="btn-floating green"><i class="material-icons">person_add</i></a></li>
+        <li ng-click="ctrl.addGroupFrom()" ><a id="add-group" class="btn-floating blue"><i class="material-icons">group_add</i></a></li>
     </ul>
 </div>
 
-<div id="contact-FAB" class="fixed-action-btn click-to-toggle responsive-fab" >
+<div ng-show="ctrl.currentItem.fName" id="contact-FAB" class="fixed-action-btn click-to-toggle responsive-fab" >
     <a class="btn-floating btn-large red">
         <i class="large mdi-content-add">
         </i>
@@ -97,7 +76,7 @@
     <ul>
         <li><a id="add-email" class="btn-floating red"><i class="material-icons">email</i></a></li>
         <li><a id="add-address" class="btn-floating yellow darken-1"><i class="material-icons">add_location</i></a></li>
-        <li><a id="add-phone-num" class="btn-floating green"><i class="material-icons">phone</i></a></li>
+        <li><a ng-click="ctrl.addNumberForm()" id="add-phone-num" class="btn-floating green"><i class="material-icons">phone</i></a></li>
 
     </ul>
 </div>
@@ -137,7 +116,8 @@
 <!-- style-->
 <script type="text/javascript" src="style/js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="style/js/materialize.min.js"></script>
-<!--Business logick-->
+<!--Business logic-->
+
 <script src="newApp/BL/helpers.js"></script>
 <script src="newApp/BL/Contact.js"></script>
 <script src="newApp/BL/Group.js"></script>
@@ -145,6 +125,7 @@
 
 <script src="newApp/lib/angular.js"></script>
 <script src="newApp/app.js"></script>
+<script src="newApp/phoneBookService.js"></script>
 <script src="newApp/MainCtrl.js"></script>
 
 <!--<script src="js/helpers.js"></script>-->
@@ -156,7 +137,6 @@
 <!--<script src="js/events.js"></script>-->
 <!--<script src="js/dynamic-events.js"></script>-->
 <!--<script src="js/app.js"></script>-->
-
 
 </body>
 </html>

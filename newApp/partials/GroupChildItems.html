@@ -1,0 +1,13 @@
+<ul class="collection">
+    <li ng-show="ctrl.GroupFrom" ng-include="'newApp/partials/addGroupForm.html'" class="collection-item avatar " >
+    </li>
+
+    <li ng-show="ctrl.ContactForm" ng-include="'newApp/partials/addContactForm.html'" class="collection-item avatar " >
+    </li>
+
+    <li class="collection-item avatar" ng-repeat="item in ctrl.currentItem.childItems">
+        <div ng-include="'newApp/partials/childContact.html'"></div>
+        <div ng-include="'newApp/partials/childGroup.html'"></div>
+    </li>
+
+</ul>

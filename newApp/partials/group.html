@@ -1,0 +1,19 @@
+<div class="item-main">
+    <div class="item-view">
+        <div class="item-btnz">
+            <a id="delete-btn" class="waves-effect waves-red btn-flat">
+                <i class="material-icons red-text">delete</i>
+            </a>
+
+            <a id="edit-btn" class="waves-effect waves-teal btn-flat">
+                <i class="material-icons teal-text">edit</i>
+            </a>
+        </div>
+        <i class="material-icons large">group</i>
+        <div id="title" contenteditable="true">{{ctrl.currentItem.name}}</div>
+    </div>
+</div>
+<div ng-include="'newApp/partials/GroupChildItems.html'">
+
+</div>
+

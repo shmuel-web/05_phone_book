@@ -1,0 +1,27 @@
+
+<div class="item-main">
+    <div class="item-view">
+        <div class="item-btnz">
+            <a id="delete-btn" class="waves-effect waves-red btn-flat">
+                <i class="material-icons red-text">delete</i>
+            </a>
+
+            <a id="edit-btn" class="waves-effect waves-teal btn-flat">
+                <i class="material-icons teal-text">edit</i>
+            </a>
+        </div>
+        <i class="material-icons large">person</i>
+        <div id="title" contenteditable="true">{{ctrl.currentItem.fName + ' ' +ctrl.currentItem.lName}}</div>
+
+    </div>
+
+</div>
+<ul class="collection">
+    <li ng-show="ctrl.numberForm" ng-include="'newApp/partials/addPhoneNumForm.html'" class="collection-item">
+
+    </li>
+    <li class="collection-item phone-num" ng-repeat="item in ctrl.currentItem.phoneNum">
+        <div ng-include="'newApp/partials/phoneNumber.html'"></div>
+    </li>
+</ul>
+
