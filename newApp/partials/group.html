@@ -10,7 +10,13 @@
             </a>
         </div>
         <i class="material-icons large">group</i>
-        <div id="title" contenteditable="true">{{ctrl.currentItem.name}}</div>
+        <div
+            id="title"
+            contenteditable="true"
+            ng-model="updatedItemName"
+            ng-keypress="($event.which === 13)?ctrl.updateItemName($event):0"
+            ng-blur="ctrl.updateItemName($event)"
+        >{{ctrl.currentItem.name}}</div>
     </div>
 </div>
 <div ng-include="'newApp/partials/GroupChildItems.html'">

@@ -11,13 +11,20 @@
             </a>
         </div>
         <i class="material-icons large">person</i>
-        <div id="title" contenteditable="true">{{ctrl.currentItem.fName + ' ' +ctrl.currentItem.lName}}</div>
+        <div
+            id="title"
+            contenteditable="true"
+            ng-model="updatedItemName"
+            ng-keypress="($event.which === 13)?ctrl.updateItemName($event):0"
+            ng-blur="ctrl.updateItemName($event)"
+
+        >{{ctrl.currentItem.fName + ' ' +ctrl.currentItem.lName}}</div>
 
     </div>
 
 </div>
 <ul class="collection">
-    <li ng-show="ctrl.showNumberForm" ng-include="'newApp/partials/addPhoneNumForm.html'" class="collection-item">
+    <li ng-show="ctrl.showNumberForm" ng-include="'newApp/partials/forms/addPhoneNumForm.html'" class="collection-item">
 
     </li>
     <li class="collection-item phone-num" ng-repeat="item in ctrl.currentItem.phoneNum">

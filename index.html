@@ -57,18 +57,18 @@
 
 </main>
 
-<div ng-show="ctrl.currentItem.name" id="group-FAB" class="fixed-action-btn click-to-toggle responsive-fab" >
+<div ng-show="ctrl.currentItem.name" id="group-FAB" class="fixed-action-btn responsive-fab" >
     <a class="btn-floating btn-large red">
         <i class="large mdi-content-add">
         </i>
     </a>
     <ul>
-        <li ng-click="ctrl.addContactForm()" ><a id="add-contact" class="btn-floating green"><i class="material-icons">person_add</i></a></li>
-        <li ng-click="ctrl.addGroupFrom()" ><a id="add-group" class="btn-floating blue"><i class="material-icons">group_add</i></a></li>
+        <li ng-click="ctrl.showAddContactForm()" ><a id="add-contact" class="btn-floating green"><i class="material-icons">person_add</i></a></li>
+        <li ng-click="ctrl.showAddGroupFrom()" ><a id="add-group" class="btn-floating blue"><i class="material-icons">group_add</i></a></li>
     </ul>
 </div>
 
-<div ng-show="ctrl.currentItem.fName" id="contact-FAB" class="fixed-action-btn click-to-toggle responsive-fab" >
+<div ng-show="ctrl.currentItem.fName" id="contact-FAB" class="fixed-action-btn responsive-fab" >
     <a class="btn-floating btn-large red">
         <i class="large mdi-content-add">
         </i>
