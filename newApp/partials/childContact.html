@@ -1,6 +1,6 @@
 <div ng-if="item.fName" >
     <i class="material-icons circle green">person</i>
-    <span class="title">{{ item.fName + ' ' + item.lName }}</span>
-    <p ng-repeat="number in item.phoneNum">{{ number + " " }}</p>
-    <a class="secondary-content"><i ng-click="ctrl.changeCurrentItem(item.id)" class="material-icons display-item">send</i></a>
+    <p class="title">{{ item.fName + ' ' + item.lName }}</p>
+    <span ng-repeat = "number in item.phoneNum">{{ number + "   "  }}</span>
+    <a class="secondary-content"><i ng-click="ctrl.displayCurrentItem(item.id)" class="material-icons display-item">send</i></a>
 </div>

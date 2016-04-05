@@ -17,7 +17,7 @@ app.Group = (function () {
         this.childItems.push(newSubGroup);
         if (callback) {
             //activate an optional callback function
-            callback();
+            callback(name);
         }
     };
 

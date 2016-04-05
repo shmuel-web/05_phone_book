@@ -1,15 +1,15 @@
 <i class="material-icons circle green">person</i>
-<form id="add-contact">
+<form ng-submit="ctrl.addContactFormHandler()" id="add-contact">
     <div class="input-field">
-        <input id="first_name" type="text">
+        <input ng-model="ctrl.fName" id="first_name" type="text">
         <label for="first_name" data-error="wrong" data-success="right">first name</label>
     </div>
     <div class="input-field">
-        <input id="last_name" type="text">
+        <input ng-model="ctrl.lName" id="last_name" type="text">
         <label for="last_name" data-error="wrong" data-success="right">last name</label>
     </div>
     <div class="input-field">
-        <input id="number" type="text">
+        <input ng-model="ctrl.number" id="number" type="text">
         <label for="number" data-error="wrong" data-success="right">phone number</label>
     </div>
     <div class="input-btnz">
@@ -17,7 +17,7 @@
             Submit
             <i class="material-icons right">send</i>
         </button>
-        <a id="cancel-input" class="waves-effect waves-red btn-flat">
+        <a ng-click="ctrl.hideForm()" id="cancel-input" class="waves-effect waves-red btn-flat">
             cancel
         </a>
     </div>
