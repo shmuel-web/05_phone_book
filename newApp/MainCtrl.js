@@ -156,6 +156,10 @@
 
     };
 
+    MainCtrl.prototype.deletePhoneNum = function(index){
+        this.currentItem.deletePhoneNum(index);
+    };
+
     MainCtrl.prototype.deleteItem = function(){
         this.phoneBook.deleteItem(this.currentItem.id);
         var content = '<i class="material-icons small red-text">delete</i><span>the item was deleted </span>';
