@@ -1,7 +1,11 @@
 <a class="waves-effect waves-teal btn-flat">
     <i class="material-icons left teal-text">call </i>
 </a>
-<span contenteditable="true"> {{ item }}</span>
+<span contenteditable="true"
+      ng-keypress="($event.which === 13)?ctrl.editPhoneNumber($event,$index):0"
+      ng-blur="ctrl.editPhoneNumber($event,$index)"
+    > {{ item }}
+</span>
 <div class="number-btnz" >
     <a class="num-delete-btn" class="waves-effect waves-red btn-flat">
         <i class="material-icons red-text">delete</i>

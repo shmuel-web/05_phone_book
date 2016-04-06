@@ -1,4 +1,10 @@
 <ul class="collection">
+    <li ng-show="ctrl.showGroupFrom" ng-include="'newApp/partials/forms/addGroupForm.html'" class="collection-item avatar " >
+    </li>
+
+    <li ng-show="ctrl.showContactForm" ng-include="'newApp/partials/forms/addContactForm.html'" class="collection-item avatar " >
+    </li>
+
     <li class="collection-item avatar" ng-repeat="item in ctrl.currentItem.childItems">
         <div ng-include="'newApp/partials/childContact.html'"></div>
         <div ng-include="'newApp/partials/childGroup.html'"></div>

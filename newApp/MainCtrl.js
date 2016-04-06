@@ -12,6 +12,10 @@
         console.log(this.currentItem);
     };
 
+    MainCtrl.prototype.editMode = function(){
+        $('#title').focus();
+    };
+
     MainCtrl.prototype.displayCurrentItem = function(item){
 
         //    chek if it is root group or contact or search results item
@@ -129,9 +133,32 @@
 
     };
 
+    //when the user blurs the edit mode or press enter
+    MainCtrl.prototype.editPhoneNumber = function(event,index){
+        //the freshly edited item name
+        var newNum = event.target.textContent;
+
+        if (newNum != ""){
+            if (event.type == "blur"){
+                this.currentItem.changePhoneNum(newNum,index);
+                this.phoneBook.writeToLocal();
+            }
+            else if (event.type == "keypress" && event.keyCode == 13){
+                event.preventDefault();
+                event.target.blur();//which fires the blur event and does all the above
+            }
+        }
+        else {
+            //if the user submited a blank string then its probbely a mistake or that he wishes to delete the item
+            //    todo ask the user if he wishs to delete he item if not do nothing
+            event.preventDefault();
+        }
+
+    };
+
     MainCtrl.prototype.deleteItem = function(){
         this.phoneBook.deleteItem(this.currentItem.id);
-        var content = '<i class="material-icons small red-text">delete</i><span>' + this.currentItem.name + ' was deleted </span>';
+        var content = '<i class="material-icons small red-text">delete</i><span>the item was deleted </span>';
         Materialize.toast(content, 4000);
         this.currentItem = this.currentItem.parent;
     };
