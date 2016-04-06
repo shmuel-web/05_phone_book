@@ -28,7 +28,7 @@
                         </a>
                     </li>
                     <li>
-                        <a ng-show="ctrl.currentItem.searchResults" id="back-btn">
+                        <a ng-show="ctrl.currentItem.searchResult" ng-click="ctrl.back()" id="back-btn">
                             <i class="material-icons left">keyboard_backspace</i>
                             BACK
                         </a>
@@ -39,9 +39,9 @@
                         </a>
                     </li>
                 </ul>
-                <form id="search-bar">
+                <form ng-submit="ctrl.search($event)" id="search-bar">
                     <div class="input-field">
-                        <input id="search" type="search" required>
+                        <input ng-model="ctrl.searchParam"  id="search" type="search" required>
                         <label for="search"><i class="material-icons">search</i></label>
                         <i class="material-icons">close</i>
                     </div>

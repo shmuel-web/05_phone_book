@@ -90,6 +90,12 @@ nav form {
     outline: none;
     box-shadow: 0 2px 0 0 #26a69a; }
 
+.search-result-msg {
+  float: left;
+  clear: left;
+  margin-left: 90px;
+  font-size: 1.2rem; }
+
 .responsive-fab {
   bottom: 6%; }
 
