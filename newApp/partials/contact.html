@@ -16,7 +16,7 @@
 
 </div>
 <ul class="collection">
-    <li ng-show="ctrl.showNumberForm" ng-include="'newApp/partials/forms/addPhoneNumForm.html'" class="collection-item">
+    <li ng-if="ctrl.showNumberForm" ng-include="'newApp/partials/forms/addPhoneNumForm.html'" class="collection-item">
 
     </li>
     <li class="collection-item phone-num" ng-repeat="item in ctrl.currentItem.phoneNum">
