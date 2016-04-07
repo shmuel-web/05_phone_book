@@ -181,8 +181,9 @@
         $('#delete-confirm').one('click',function(){
             var content = '<i class="material-icons small red-text">delete</i><span>the item was deleted </span>';
             Materialize.toast(content, 4000);
-            self.currentItem = self.currentItem.parent;
-            this.phoneBook.deleteItem(this.currentItem.id);
+            var parent = self.currentItem.parent;
+            self.phoneBook.deleteItem(self.currentItem.id);
+            self.currentItem = parent;
             self.$scope.$apply();
         });
     };
