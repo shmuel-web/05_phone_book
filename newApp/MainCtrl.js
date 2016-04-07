@@ -1,11 +1,27 @@
 (function(){
     "use strict";
-    function MainCtrl (phoneBookService,$scope){
+    function MainCtrl (phoneBookService,$scope) {
         this.phoneBook = phoneBookService;
         this.phoneBook.readFromLocal();
         this.currentItem = this.phoneBook.root;
         this.currentItem.url = "newApp/partials/root.html";
         this.$scope = $scope;
+        //for learning perpesess
+        this.test = function(text){
+            console.log(text);
+        };
+        //when the user blurs the edit mode or press enter
+        //this.updateItemName = function (newName) {
+        //
+        //    if (newName != "") {
+        //        this.currentItem.changeName(newName);
+        //        this.phoneBook.writeToLocal();
+        //    }
+        //    else {
+        //        //ask the user if he wishes to delete the item
+        //        this.deleteItem();
+        //    }
+        //};
     }
 
     MainCtrl.prototype.editMode = function(){
@@ -113,7 +129,7 @@
             Materialize.toast(content, 4000);
         })
     };
-    //when the user blurs the edit mode or press enter
+    /*//when the user blurs the edit mode or press enter
     MainCtrl.prototype.updateItemName = function(event){
         //the freshly edited item name
         var newName = event.target.textContent.trim();
@@ -137,6 +153,20 @@
             }
 
 
+    };*/
+
+    //when the user blurs the edit mode or press enter
+    MainCtrl.prototype.updateItemName = function(newName){
+
+        if (newName != ""){
+            var newName = event.target.textContent;
+            this.currentItem.changeName(newName);
+            this.phoneBook.writeToLocal();
+        }
+        else {
+            //ask the user if he wishes to delete the item
+            this.deleteItem();
+        }
     };
 
     //when the user blurs the edit mode or press enter

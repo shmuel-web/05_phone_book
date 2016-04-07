@@ -1,15 +1,18 @@
 (function(){
 
-    function autoFocus(){
+    function autoFocus($timeout){
         return {
             restrict: 'A',
             link : function($scope, $element) {
-                $element[0].focus();
+                $timeout(function(){
+                    $element[0].focus();
+                },300);
+
             }
         }
     }
 
     angular
         .module('app')
-        .directive('autoFocus',autoFocus)
+        .directive('autoFocus',['$timeout',autoFocus])
 })();

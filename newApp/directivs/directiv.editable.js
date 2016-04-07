@@ -4,12 +4,15 @@
         return {
             restrict: 'A',
             link : function(scope, element, attrs) {
+                element.attr("contenteditable","true");
+
                 element.on('blur',function(){
-                    attrs();
-                });
-                element.on('keypress',function(event){
+                    //geting the freshly edited text
+                    var text = element.context.textContent;
+                    scope.ctrl.updateItemName(text);
+                }).on('keypress',function(event){
                     if (event.which === 13){
-                        event.preventDefault;
+                        event.preventDefault();
                         element.blur();
                     }
                 })

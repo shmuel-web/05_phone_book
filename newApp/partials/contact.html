@@ -5,11 +5,7 @@
         <div ng-include="'newApp/partials/btnz/itemBtnz.html'"></div>
         <div
             id="title"
-            contenteditable="true"
-            ng-model="updatedItemName"
-            ng-keypress="($event.which === 13)?ctrl.updateItemName($event):0"
-            ng-blur="ctrl.updateItemName($event)"
-
+            editable
         >{{ctrl.currentItem.fName + ' ' +ctrl.currentItem.lName}}</div>
 
     </div>
