@@ -1,16 +1,12 @@
 (function(){
     "use strict";
-    function MainCtrl (phoneBookService){
-        this.index = 0;
+    function MainCtrl (phoneBookService,$scope){
         this.phoneBook = phoneBookService;
         this.phoneBook.readFromLocal();
         this.currentItem = this.phoneBook.root;
         this.currentItem.url = "newApp/partials/root.html";
+        this.$scope = $scope;
     }
-
-    MainCtrl.prototype.test = function(){
-        console.log(this.currentItem);
-    };
 
     MainCtrl.prototype.editMode = function(){
         $('#title').focus();
@@ -55,7 +51,15 @@
     };
 
     MainCtrl.prototype.reset = function(){
-        this.phoneBook.reset();
+
+        $('#reset-modal').openModal();
+        var self = this;
+        $('#reset-confirm').one('click',function(){
+            var content = '<i class="material-icons small red-text">restore</i><span>your phone book is set bck to default </span>';
+            Materialize.toast(content, 4000);
+            self.phoneBook.reset();
+            self.$scope.$apply();
+        });
     };
 
     MainCtrl.prototype.addNumberForm = function(){
@@ -114,22 +118,24 @@
         //the freshly edited item name
         var newName = event.target.textContent.trim();
 
-        if (newName != ""){
+
             if (event.type == "blur"){
-                var newName = event.target.textContent;
-                this.currentItem.changeName(newName);
-                this.phoneBook.writeToLocal();
+                if (newName != ""){
+                    var newName = event.target.textContent;
+                    this.currentItem.changeName(newName);
+                    this.phoneBook.writeToLocal();
+                }
+                else {
+                    //ask the user if he wishes to delete the item
+                    this.deleteItem();
+                }
+
             }
             else if (event.type == "keypress" && event.keyCode == 13){
                 event.preventDefault();
                 event.target.blur();//which fires the blur event and does all the above
             }
-        }
-        else {
-            //if the user submited a blank string then its probbely a mistake or that he wishes to delete the item
-            //    todo ask the user if he wishs to delete he item if not do nothing
-            event.preventDefault();
-        }
+
 
     };
 
@@ -138,33 +144,47 @@
         //the freshly edited item name
         var newNum = event.target.textContent;
 
-        if (newNum != ""){
-            if (event.type == "blur"){
-                this.currentItem.changePhoneNum(newNum,index);
+        if (event.type == "blur"){
+            if (newNum != "") {
+                this.currentItem.changePhoneNum(newNum, index);
                 this.phoneBook.writeToLocal();
             }
-            else if (event.type == "keypress" && event.keyCode == 13){
-                event.preventDefault();
-                event.target.blur();//which fires the blur event and does all the above
+            else {
+                //if the user submited a blank string then its probbely a mistake or that he wishes to delete the item
+                //    todo ask the user if he wishes to delete the item if not do nothing
+                this.deletePhoneNum(index);
             }
         }
-        else {
-            //if the user submited a blank string then its probbely a mistake or that he wishes to delete the item
-            //    todo ask the user if he wishs to delete he item if not do nothing
+        else if (event.type == "keypress" && event.keyCode == 13){
             event.preventDefault();
+            event.target.blur();//which fires the blur event and does all the above
         }
 
     };
 
     MainCtrl.prototype.deletePhoneNum = function(index){
-        this.currentItem.deletePhoneNum(index);
+
+        $('#delete-modal').openModal();
+        var self = this;
+        $('#delete-confirm').one('click',function(){
+            self.currentItem.deletePhoneNum(index);
+            var content = '<i class="material-icons small red-text">delete</i><span>the phone number was deleted </span>';
+            Materialize.toast(content, 4000);
+            self.phoneBook.writeToLocal();
+            self.$scope.$apply();
+        });
     };
 
     MainCtrl.prototype.deleteItem = function(){
-        this.phoneBook.deleteItem(this.currentItem.id);
-        var content = '<i class="material-icons small red-text">delete</i><span>the item was deleted </span>';
-        Materialize.toast(content, 4000);
-        this.currentItem = this.currentItem.parent;
+        $('#delete-modal').openModal();
+        var self = this;
+        $('#delete-confirm').one('click',function(){
+            var content = '<i class="material-icons small red-text">delete</i><span>the item was deleted </span>';
+            Materialize.toast(content, 4000);
+            self.currentItem = self.currentItem.parent;
+            this.phoneBook.deleteItem(this.currentItem.id);
+            self.$scope.$apply();
+        });
     };
 
     MainCtrl.prototype.search = function(event) {
@@ -181,5 +201,7 @@
         inputField.blur();
     };
 
-    app.controller('MainCtrl',['phoneBookService',MainCtrl]);
+    angular
+        .module('app')
+        .controller('MainCtrl',['phoneBookService','$scope',MainCtrl]);
 })();
