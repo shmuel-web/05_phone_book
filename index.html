@@ -53,7 +53,10 @@
 
 
 </header>
-<main id="main" class="dynamic-padding" ng-include="ctrl.currentItem.url" >
+<main  class="dynamic-padding" ng-animate-swap="ctrl.currentItem" >
+    <div ng-include="ctrl.currentItem.url">
+
+    </div>
 
 </main>
 
@@ -118,23 +121,27 @@
 <script type="text/javascript" src="style/js/materialize.min.js"></script>
 <!--Business logic-->
 
-<script src="newApp/BL/helpers.js"></script>
-<script src="newApp/BL/Contact.js"></script>
-<script src="newApp/BL/Group.js"></script>
-<script src="newApp/BL/PhoneBook.js"></script>
+<script src="app/BL/helpers.js"></script>
+<script src="app/BL/Contact.js"></script>
+<script src="app/BL/Group.js"></script>
+<script src="app/BL/PhoneBook.js"></script>
 
-<script src="newApp/lib/angular.js"></script>
+<script src="app/lib/angular.js"></script>
+<script src="app/lib/angular-animate.min.js"></script>
 
 
-<script src="newApp/app.js"></script>
+<script src="app/app.js"></script>
+
+<!--filters-->
+<script src="app/filters.js"></script>
 
 <!--directivs-->
-<script src="newApp/directivs/directiv.autoFocus.js"></script>
-<script src="newApp/directivs/directiv.editable.js"></script>
+<script src="app/directivs/directiv.autoFocus.js"></script>
+<script src="app/directivs/directiv.editable.js"></script>
 <!--services-->
-<script src="newApp/phoneBookService.js"></script>
+<script src="app/phoneBookService.js"></script>
 <!--controllers-->
-<script src="newApp/MainCtrl.js"></script>
+<script src="app/MainCtrl.js"></script>
 
 <!--<script src="js/helpers.js"></script>-->
 <!--<script src="js/classes/Group.js"></script>-->

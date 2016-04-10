@@ -1,13 +1,14 @@
 (function(){
     "use strict";
     function MainCtrl (phoneBookService,$scope) {
-        this.phoneBook = phoneBookService;
-        this.phoneBook.readFromLocal();
-        this.currentItem = this.phoneBook.root;
-        this.currentItem.url = "newApp/partials/root.html";
-        this.$scope = $scope;
+        var vm = this
+        vm.phoneBook = phoneBookService;
+        vm.phoneBook.readFromLocal();
+        vm.currentItem = this.phoneBook.root;
+        vm.currentItem.url = "app/partials/main_views/root.html";
+        vm.$scope = $scope;
         //for learning perpesess
-        this.test = function(text){
+        vm.test = function(text){
             console.log(text);
         };
         //when the user blurs the edit mode or press enter
@@ -28,27 +29,38 @@
         $('#title').focus();
     };
 
-    MainCtrl.prototype.displayCurrentItem = function(item){
+    MainCtrl.prototype.displayChildItem = function(item){
+    //    creates a slide out animation renders the html and creates a slide in animation
+        var main = $('#main');
+        var self = this;
+        self.displayCurrentItem(item);
+    };
+
+
+    MainCtrl.prototype.displayCurrentItem = function(item,callback){
 
         //    chek if it is root group or contact or search results item
         //    & update the url value to the proper partial template url accordingly
         if (item.fName){
             this.currentItem = item;
-            this.currentItem.url = "newApp/partials/contact.html";
+            this.currentItem.url = "app/partials/main_views/contact.html";
         }
         else if(item.name && item.name != "Root"){
             this.currentItem = item;
-            this.currentItem.url = "newApp/partials/group.html";
+            this.currentItem.url = "app/partials/main_views/group.html";
         }
         else if (item.name == "Root"){
             this.currentItem = item;
-            this.currentItem.url = "newApp/partials/root.html";
+            this.currentItem.url = "app/partials/main_views/root.html";
         }
         else if (item.searchResult){
             this.currentItem = item;
-            this.currentItem.url = "newApp/partials/searchResults.html";
+            this.currentItem.url = "app/partials/main_views/searchResults.html";
         }
         this.hideForm();
+        if (callback){
+            callback();
+        }
 
     };
 
@@ -74,8 +86,10 @@
             var content = '<i class="material-icons small red-text">restore</i><span>your phone book is set bck to default </span>';
             Materialize.toast(content, 4000);
             self.phoneBook.reset();
+            self.displayChildItem(self.phoneBook.root);
             self.$scope.$apply();
         });
+
     };
 
     MainCtrl.prototype.addNumberForm = function(){

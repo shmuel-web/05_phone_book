@@ -8,9 +8,15 @@ body {
   overflow-x: hidden; }
 
 main {
-  flex: 1 0 auto;
-  -webkit-animation-duration: .5s !important;
-  animation-duration: .5s !important; }
+  flex: 1 0 auto; }
+  main {
+    -webkit-animation-duration: .3s !important;
+    animation-duration: .3s !important; }
+  main.ng-enter {
+    animation: slideInDown; }
+  main.ng-leave {
+    -webkit-animation-duration: 0s !important;
+    animation-duration: 0s !important; }
 
 .collection .collection-item.avatar {
   min-height: 63px; }
@@ -98,6 +104,17 @@ nav form {
 
 .responsive-fab {
   bottom: 6%; }
+
+.pop-in-form {
+  -webkit-animation-duration: .65s !important;
+  animation-duration: .65s !important; }
+
+.pop-in-form.ng-enter {
+  animation: fadeIn; }
+
+.pop-in-form.ng-leave {
+  -webkit-animation-duration: 0s !important;
+  animation-duration: 0s !important; }
 
 @media (max-width: 600px) {
   .dynamic-padding {

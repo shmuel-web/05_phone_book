@@ -1,5 +1,4 @@
 //todo improve css and design
-
 html{
   overflow-x: hidden;
 }
@@ -11,17 +10,31 @@ body {
 }
 main {
   flex: 1 0 auto;
-  //-webkit-animation-duration: 0.01ms;
-  //-webkit-animation-delay: 2s;
-  //-webkit-animation-iteration-count: infinite;
-  -webkit-animation-duration: .5s !important;
-  animation-duration: .5s !important;
 
+  &{
+    //-webkit-animation-duration: 0.01ms;
+
+    //-webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: .3s !important;
+    animation-duration: .3s !important;
+  }
+
+  &.ng-enter {
+    animation:slideInDown ;
+  }
+
+  &.ng-leave{
+    -webkit-animation-duration: 0s !important;
+    animation-duration: 0s !important;
+
+  }
 }
+
 
 //a fix in the for the css framework
 .collection .collection-item.avatar {
   min-height: 63px;
+
 }
 
 .collection{
@@ -127,6 +140,26 @@ nav form {
 
 .responsive-fab{
   bottom: 6%;
+}
+
+.pop-in-form{
+  &{
+    //-webkit-animation-duration: 0.01ms;
+
+    //-webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: .65s !important;
+    animation-duration: .65s !important;
+  }
+
+  &.ng-enter {
+    animation:fadeIn ;
+  }
+
+  &.ng-leave{
+    -webkit-animation-duration: 0s !important;
+    animation-duration: 0s !important;
+
+  }
 }
 
 @media (max-width: 600px){
