@@ -9,20 +9,9 @@
         vm.$scope = $scope;
         //for learning perpesess
         vm.test = function(text){
+            var text = text || "hello dummy";
             console.log(text);
         };
-        //when the user blurs the edit mode or press enter
-        //this.updateItemName = function (newName) {
-        //
-        //    if (newName != "") {
-        //        this.currentItem.changeName(newName);
-        //        this.phoneBook.writeToLocal();
-        //    }
-        //    else {
-        //        //ask the user if he wishes to delete the item
-        //        this.deleteItem();
-        //    }
-        //};
     }
 
     MainCtrl.prototype.editMode = function(){
@@ -143,31 +132,7 @@
             Materialize.toast(content, 4000);
         })
     };
-    /*//when the user blurs the edit mode or press enter
-    MainCtrl.prototype.updateItemName = function(event){
-        //the freshly edited item name
-        var newName = event.target.textContent.trim();
 
-
-            if (event.type == "blur"){
-                if (newName != ""){
-                    var newName = event.target.textContent;
-                    this.currentItem.changeName(newName);
-                    this.phoneBook.writeToLocal();
-                }
-                else {
-                    //ask the user if he wishes to delete the item
-                    this.deleteItem();
-                }
-
-            }
-            else if (event.type == "keypress" && event.keyCode == 13){
-                event.preventDefault();
-                event.target.blur();//which fires the blur event and does all the above
-            }
-
-
-    };*/
 
     //when the user blurs the edit mode or press enter
     MainCtrl.prototype.updateItemName = function(newName){
@@ -183,27 +148,18 @@
         }
     };
 
-    //when the user blurs the edit mode or press enter
-    MainCtrl.prototype.editPhoneNumber = function(event,index){
-        //the freshly edited item name
-        var newNum = event.target.textContent;
+    //when the user blurs the edit mode or press enter on a phone number
+    MainCtrl.prototype.editPhoneNumber = function(newNum,index){
 
-        if (event.type == "blur"){
-            if (newNum != "") {
-                this.currentItem.changePhoneNum(newNum, index);
-                this.phoneBook.writeToLocal();
-            }
-            else {
-                //if the user submited a blank string then its probbely a mistake or that he wishes to delete the item
-                //    todo ask the user if he wishes to delete the item if not do nothing
-                this.deletePhoneNum(index);
-            }
+        if (newNum != "") {
+            this.currentItem.changePhoneNum(newNum, index);
+            this.phoneBook.writeToLocal();
         }
-        else if (event.type == "keypress" && event.keyCode == 13){
-            event.preventDefault();
-            event.target.blur();//which fires the blur event and does all the above
+        else {
+            //if the user submited a blank string then its probbely a mistake or that he wishes to delete the item
+            //    todo ask the user if he wishes to delete the item if not do nothing
+            this.deletePhoneNum(index);
         }
-
     };
 
     MainCtrl.prototype.deletePhoneNum = function(index){
