@@ -150,7 +150,6 @@
 
     //when the user blurs the edit mode or press enter on a phone number
     MainCtrl.prototype.editPhoneNumber = function(newNum,index){
-
         if (newNum != "") {
             this.currentItem.changePhoneNum(newNum, index);
             this.phoneBook.writeToLocal();

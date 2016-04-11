@@ -3,13 +3,17 @@
     function editable(){
         return {
             restrict: 'A',
+            scope:{
+                updateFunction: '&editable'
+            },
             link : function(scope, element, attrs) {
                 element.attr("contenteditable","true");
 
                 element.on('blur',function(){
                     //geting the freshly edited text
-                    var text = element.context.textContent;
-                    scope.ctrl.updateItemName(text);
+                    var newText = element.context.textContent;
+                    var index = attrs.index;
+                    scope.updateFunction({text:newText,index:index});
                 }).on('keypress',function(event){
                     if (event.which === 13){
                         event.preventDefault();
