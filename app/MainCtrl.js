@@ -161,6 +161,19 @@
         }
     };
 
+    //when the user blurs the edit mode or press enter on a LI contact or group name
+    MainCtrl.prototype.editGroupChildItems = function(newName,index){
+        if (newName != "") {
+            this.currentItem.changeChildItemName(newName,index);
+            this.phoneBook.writeToLocal();
+        }
+        else {
+            //if the user submited a blank string then its probbely a mistake or that he wishes to delete the item
+            //    todo ask the user if he wishes to delete the item if not do nothing
+            //this.deletePhoneNum(index);
+        }
+    };
+
     MainCtrl.prototype.deletePhoneNum = function(index){
 
         $('#delete-modal').openModal();

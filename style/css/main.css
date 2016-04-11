@@ -87,12 +87,22 @@ nav form {
     border-radius: 50%; }
 
 .collection-item span {
-  padding-bottom: 5px;
+  padding-bottom: 1px;
   transition-property: all;
   transition-duration: 0.3s;
   transition-timing-function: initial;
   transition-delay: initial; }
   .collection-item span:focus {
+    outline: none;
+    box-shadow: 0 2px 0 0 #26a69a; }
+
+.editable {
+  padding-bottom: 5px;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: initial;
+  transition-delay: initial; }
+  .editable:focus {
     outline: none;
     box-shadow: 0 2px 0 0 #26a69a; }
 

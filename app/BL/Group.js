@@ -34,5 +34,9 @@ BL.Group = (function () {
         this.name = newName;
     };
 
+    Group.prototype.changeChildItemName = function (newName, index) {
+        this.childItems[index].changeName(newName);
+    };
+
     return Group;
 })();

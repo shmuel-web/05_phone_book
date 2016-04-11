@@ -1,8 +1,16 @@
 <div ng-if="item.fName"  >
     <i class="material-icons circle green front">person</i>
-    <p class="title">{{ item.fName + ' ' + item.lName }}</p>
-    <span ng-repeat = "number in item.phoneNum track by $index">{{ number }}
+    <span
+            class="title editable"
+            editable="ctrl.editGroupChildItems(text,index)"
+            index="{{$index}}"
+
+    >{{ item.fName + ' ' + item.lName }}</span>
+    <p>
+        <span ng-repeat = "number in item.phoneNum track by $index">{{ number }}
         <span ng-if=" $middle || $first && item.phoneNum.length > 1">, </span>
     </span>
+    </p>
+
     <a class="secondary-content"><i ng-click="ctrl.displayChildItem(item)" class="material-icons display-item">send</i></a>
 </div>
